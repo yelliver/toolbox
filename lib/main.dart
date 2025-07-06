@@ -25,7 +25,12 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: _isDarkMode ? ThemeData.dark() : ThemeData.light(),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.green,
+          brightness: _isDarkMode ? Brightness.dark : Brightness.light,
+        ),
+      ),
       home: ToolWorkspace(isDarkMode: _isDarkMode, onThemeToggle: _toggleTheme),
     );
   }
