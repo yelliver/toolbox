@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:toolbox/tools/simple_calculator_tool.dart';
+
 import 'hash_calculator_tool.dart';
 import 'jwt_decoder_tool.dart';
 
@@ -17,10 +19,11 @@ class ToolRegistry {
       icon: Icons.lock,
       builder: () => const HashCalculatorTool(),
     ),
-    'jwt_decoder': ToolDefinition(
-      name: 'JWT Decoder',
-      icon: Icons.vpn_key,
-      builder: () => const JwtDecoderTool(),
+    'jwt_decoder': ToolDefinition(name: 'JWT Decoder', icon: Icons.vpn_key, builder: () => const JwtDecoderTool()),
+    'simple_calculator': ToolDefinition(
+      name: 'Simple Calculator',
+      icon: Icons.calculate,
+      builder: () => const SimpleCalculatorTool(),
     ),
   };
 }
