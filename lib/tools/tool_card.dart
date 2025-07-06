@@ -21,7 +21,7 @@ class ToolCard extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            color: Colors.grey[800],
+            color: Theme.of(context).colorScheme.surfaceVariant,
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             child: Row(
               children: [

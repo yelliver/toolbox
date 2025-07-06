@@ -12,7 +12,10 @@ class ToolInstance {
 }
 
 class ToolWorkspace extends StatefulWidget {
-  const ToolWorkspace({super.key});
+  final bool isDarkMode;
+  final VoidCallback onThemeToggle;
+
+  const ToolWorkspace({super.key, required this.isDarkMode, required this.onThemeToggle});
 
   @override
   State<ToolWorkspace> createState() => _ToolWorkspaceState();
@@ -24,7 +27,7 @@ class _ToolWorkspaceState extends State<ToolWorkspace> {
 
   int _calculateNumColumns(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    return (screenWidth / 700).floor().clamp(1, 4); // max 4 columns if needed
+    return (screenWidth / 700).floor().clamp(1, 4);
   }
 
   void _addTool(String toolKey) {
@@ -65,11 +68,24 @@ class _ToolWorkspaceState extends State<ToolWorkspace> {
         children: [
           Container(
             width: 220,
-            color: Colors.grey[900],
+            color: widget.isDarkMode ? Colors.grey[900] : Colors.grey[200],
             child: Column(
               children: [
                 const SizedBox(height: 16),
-                const Text('Tool Library', style: TextStyle(fontSize: 18)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(left: 16),
+                      child: Text('Tool Library', style: TextStyle(fontSize: 18)),
+                    ),
+                    IconButton(
+                      icon: Icon(widget.isDarkMode ? Icons.light_mode : Icons.dark_mode),
+                      onPressed: widget.onThemeToggle,
+                      tooltip: widget.isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode',
+                    ),
+                  ],
+                ),
                 const Divider(),
                 Expanded(
                   child: ListView(
